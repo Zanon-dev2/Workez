@@ -16,6 +16,9 @@ int main() {
     workez::zlist>>numeros; 
     std::cout<<"Total de itens lidos: "<<numeros.size()<<"\n";
 }
+
+---
+
 Soma():
 #include "workez.hpp"
 #include <vector>
@@ -26,6 +29,9 @@ int main(){
   double total = soma(lista);
   std::cout<<total;
 }
+
+---
+
 piper:
 "#include "workez.hpp"
 #include <iostream>
@@ -42,6 +48,9 @@ int main() {
     // 3. Remover a permissao se necessario
     workez::piper.parlist.del("utilitarios", "calculadora");
 }
+
+---
+
 APIR:
 #include "workez.hpp"
 
