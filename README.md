@@ -4,7 +4,7 @@ A biblioteca atualmente conta com uma função para somar que foi feita para tes
 Ainda está em desenvolvimento e sendo desenvolvida bem lentamente, e sem um único propósito, apenas simplifica coisas que foram problemas ou chatas para mim.
 funcionamento:
 Zlist:
-```cpp
+cpp
 #include "workez.hpp"
 #include <vector>
 #include <iostream>
@@ -15,12 +15,9 @@ int main() {
     // Lê toda a entrada de uma vez e popula o vector
     workez::zlist>>numeros; 
     std::cout<<"Total de itens lidos: "<<numeros.size()<<"\n";
-}´´´
-
-
-
+}
 Soma():
-"#include "workez.hpp"
+#include "workez.hpp"
 #include <vector>
 #include <iostream>
 int main(){
@@ -28,7 +25,7 @@ int main(){
   //faz a soma de todos os itens da lista
   double total = soma(lista);
   std::cout<<total;
-}"
+}
 piper:
 "#include "workez.hpp"
 #include <iostream>
@@ -44,9 +41,9 @@ int main() {
 
     // 3. Remover a permissao se necessario
     workez::piper.parlist.del("utilitarios", "calculadora");
-}```
+}
 APIR:
-"#include "workez.hpp"
+#include "workez.hpp"
 
 int main() {
     crow::SimpleApp app;
@@ -64,7 +61,9 @@ int main() {
     // Criando uma rota POST que retorna void (o status 200 e enviado sozinho)
     workez::APIR<void>(app, "POST", testar);
     app.port(18080).multithreaded().run();
-}"
+}
+
+---
 
 #depende da biblioteca Crow e foi pensado pro sistema operacional Windows
 Sem a crow a APIR para de funcionar e fora do Windows a piper não funcioa, C++17 ou maior
