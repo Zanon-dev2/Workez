@@ -4,7 +4,8 @@ A biblioteca atualmente conta com uma função para somar que foi feita para tes
 Ainda está em desenvolvimento e sendo desenvolvida bem lentamente, e sem um único propósito, apenas simplifica coisas que foram problemas ou chatas para mim.
 funcionamento:
 Zlist:
-"#include "workez.hpp"
+```cpp
+#include "workez.hpp"
 #include <vector>
 #include <iostream>
 
@@ -40,7 +41,7 @@ int main() {
 
     // 3. Remover a permissao se necessario
     workez::piper.parlist.del("utilitarios", "calculadora");
-}"
+}```
 APIR:
 "#include "workez.hpp"
 
