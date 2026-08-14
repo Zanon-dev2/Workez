@@ -4,7 +4,7 @@ A biblioteca atualmente conta com uma função para somar que foi feita para tes
 Ainda está em desenvolvimento e sendo desenvolvida bem lentamente, e sem um único propósito, apenas simplifica coisas que foram problemas ou chatas para mim.
 funcionamento:
 Zlist:
-cpp
+```cpp
 #include "workez.hpp"
 #include <vector>
 #include <iostream>
@@ -15,8 +15,10 @@ int main() {
     // Lê toda a entrada de uma vez e popula o vector
     workez::zlist>>numeros; 
     std::cout<<"Total de itens lidos: "<<numeros.size()<<"\n";
-}
-cpp
+}´´´
+
+
+
 Soma():
 "#include "workez.hpp"
 #include <vector>
