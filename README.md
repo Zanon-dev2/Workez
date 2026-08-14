@@ -15,7 +15,8 @@ int main() {
     // Lê toda a entrada de uma vez e popula o vector
     workez::zlist>>numeros; 
     std::cout<<"Total de itens lidos: "<<numeros.size()<<"\n";
-}```
+}
+```
 
 ---
 
