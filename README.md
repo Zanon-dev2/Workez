@@ -21,6 +21,7 @@ int main() {
 ---
 
 Soma():
+```cpp
 #include "workez.hpp"
 #include <vector>
 #include <iostream>
@@ -30,11 +31,12 @@ int main(){
   double total = soma(lista);
   std::cout<<total;
 }
-
+```
 ---
 
 piper:
-"#include "workez.hpp"
+```cpp
+#include "workez.hpp"
 #include <iostream>
 
 int main() {
@@ -49,10 +51,11 @@ int main() {
     // 3. Remover a permissao se necessario
     workez::piper.parlist.del("utilitarios", "calculadora");
 }
-
+```
 ---
 
 APIR:
+```cpp
 #include "workez.hpp"
 
 int main() {
@@ -72,7 +75,7 @@ int main() {
     workez::APIR<void>(app, "POST", testar);
     app.port(18080).multithreaded().run();
 }
-
+```
 ---
 
 #depende da biblioteca Crow e foi pensado pro sistema operacional Windows
