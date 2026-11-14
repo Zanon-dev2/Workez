@@ -1,82 +1,108 @@
-# Workez
-Uma biblioteca que estou desenvolvendo pra facilitar minha vida.
-A biblioteca atualmente conta com uma função para somar que foi feita para testes, uma função que usa a crow pra simplificar as routes da crow junto da adição simples de comunicação entre arquivos com parametros e um input de lista.
-Ainda está em desenvolvimento e sendo desenvolvida bem lentamente, e sem um único propósito, apenas simplifica coisas que foram problemas ou chatas para mim.
-funcionamento:
-Zlist:
+# 🛠️ Workez
+
+A personal C++ utility library built to make my life easier by simplifying repetitive tasks and boilerplate code.
+
+## 📖 Overview
+
+**Workez** is a growing, general-purpose helper library created to solve everyday annoyances in C++. Rather than focusing on a single domain, it bundles convenient wrappers for stream-based list inputs, vector summation, inter-process communication on Windows, and cleaner HTTP route definitions for the **Crow** web framework.
+
+> ⚠️ **Work in Progress:** This library is actively evolving at its own pace as new utilities become useful to me.
+
+## ⚙️ Requirements & Compatibility
+
+* **C++ Standard:** C++17 or higher.
+* **Operating System:** Designed primarily for **Windows** (`workez::piper` relies on Windows APIs and will not work on other platforms).
+* **Dependencies:** Requires the [Crow](https://github.com) microframework (`workez::APIR` depends on Crow to function).
+
+## ✨ Features & Usage
+
+### 1. `zlist` — Stream-Based List Input
+Reads a full line of space-separated inputs at once and populates a `std::vector` using overloaded stream operators.
+
 ```cpp
 #include "workez.hpp"
 #include <vector>
 #include <iostream>
 
 int main() {
-    std::vector<int> numeros;
-    std::cout << "Digite uma lista de numeros separados por espaco: ";
-    // Lê toda a entrada de uma vez e popula o vector
-    workez::zlist>>numeros; 
-    std::cout<<"Total de itens lidos: "<<numeros.size()<<"\n";
-}
-```
-
----
-
-Soma():
-```cpp
-#include "workez.hpp"
-#include <vector>
-#include <iostream>
-int main(){
-  std::vector<double> lista = {1.2, 2.2, 5.7, 9.9};
-  //faz a soma de todos os itens da lista
-  double total = soma(lista);
-  std::cout<<total;
-}
-```
----
-
-piper:
-```cpp
-#include "workez.hpp"
-#include <iostream>
-
-int main() {
-    // 1. Dar permissao ao executavel "calculadora.exe" na categoria "utilitarios"
-    workez::piper.parlist.add("utilitarios", "calculadora");
-
-    // 2. Chamar o executavel passando um dado de entrada (ex: "5 + 5")
-    std::string retorno = workez::piper.call("5 + 5", "calculadora", "utilitarios");
+    std::vector<int> numbers;
+    std::cout << "Enter a list of space-separated numbers: ";
     
-    std::cout << "Saida do programa externo: " << retorno << "\n";
-
-    // 3. Remover a permissao se necessario
-    workez::piper.parlist.del("utilitarios", "calculadora");
+    // Reads the entire input line at once and populates the vector
+    workez::zlist >> numbers; 
+    
+    std::cout << "Total items read: " << numbers.size() << "\n";
 }
 ```
----
 
-APIR:
+### 2. `soma()` — Vector Summation
+A simple helper function originally created for testing that calculates the sum of all elements in a vector.
+
+```cpp
+#include "workez.hpp"
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<double> list = {1.2, 2.2, 5.7, 9.9};
+    
+    // Sums all elements in the list
+    double total = soma(list);
+    
+    std::cout << total << "\n";
+}
+```
+
+### 3. `piper` — External Executable Communication (Windows)
+Manages permissions and facilitates communication with external executables by passing arguments/input and capturing their output.
+
+```cpp
+#include "workez.hpp"
+#include <iostream>
+
+int main() {
+    // 1. Grant permission to "calculator.exe" under the "utilities" category
+    workez::piper.parlist.add("utilities", "calculator");
+
+    // 2. Call the executable passing an input string (e.g., "5 + 5")
+    std::string output = workez::piper.call("5 + 5", "calculator", "utilities");
+    
+    std::cout << "External program output: " << output << "\n";
+
+    // 3. Remove permission when no longer needed
+    workez::piper.parlist.del("utilities", "calculator");
+}
+```
+
+### 4. `APIR` — Simplified Crow Route Wrapper
+Reduces boilerplate when defining HTTP routes in **Crow**, supporting direct return values as well as automatic `200 OK` responses for `void` handlers.
+
 ```cpp
 #include "workez.hpp"
 
 int main() {
     crow::SimpleApp app;
 
-    // Criando uma rota GET simples que retorna uma string de forma direta
-    workez::APIR<std::string>(app, "GET", [](req) {
+    // Create a simple GET route that directly returns a string
+    workez::APIR<std::string>(app, "GET", [](const crow::request& req) {
         return "Hello World!";
-    }, "/ola");
+    }, "/hello");
 
-  //também podemos escrever a lambda por fora
-  auto testar = [](req) {
-        // ... sua logica de processamento aqui ...
-    }, "/salvar");
+    // Or define the handler lambda externally
+    auto handleSave = [](const crow::request& req) {
+        // ... your processing logic here ...
+    };
 
-    // Criando uma rota POST que retorna void (o status 200 e enviado sozinho)
-    workez::APIR<void>(app, "POST", testar);
+    // Create a POST route returning void (status 200 is sent automatically)
+    workez::APIR<void>(app, "POST", handleSave, "/save");
+
     app.port(18080).multithreaded().run();
 }
 ```
----
 
-#depende da biblioteca Crow e foi pensado pro sistema operacional Windows
-Sem a crow a APIR para de funcionar e fora do Windows a piper não funcioa, C++17 ou maior
+## 📄 License
+
+This project is open-source and available for personal and educational use.
+
+---
+Developed by [Zanon-dev2](https://github.com/Zanon-dev2).
