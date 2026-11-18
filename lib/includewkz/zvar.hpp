@@ -1,0 +1,23 @@
+typedef unsigned long long u64;
+typedef unsigned int u32;
+typedef unsigned short u16;
+typedef unsigned char u8;
+typedef long long i64;
+typedef int i32;
+typedef short i16;
+typedef char i8;
+typedef float f32;
+typedef double f64;
+typedef void u0;
+
+typedef u64 U64;
+typedef i64 I64;
+typedef u32 U32;
+typedef i32 I32;
+typedef u16 U16;
+typedef i16 I16;
+typedef u8 U8;
+typedef i8 I8;
+typedef u0 U0;
+typedef f32 F32;
+typedef f64 F64;
